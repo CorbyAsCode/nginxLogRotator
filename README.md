@@ -14,7 +14,7 @@
     Rotate logs:
         Goroutine will scan nginx configs to search for log paths.
         Rotate logs based on size or amount of time passed.
-        Execute nginx log refresh command.
+        Execute nginx command to reopen log files.
 
     Signal handling:
         If a kill signal is sent to the app it should handle it appropriately.
