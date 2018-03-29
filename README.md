@@ -1,9 +1,11 @@
-Requirements:
+## Requirements
+
     1. App should run nginx inside a goroutine.
     2. App should truncate nginx logs inside another goroutine based on a timer or file size.
     3. App should propagate nginx runtime errors back to stdout and/or a log file and exit.
 
-Details:
+## Details
+
     Running nginx:
         Goroutine runs nginx in the foreground.
         Runtime errors are checked for and to be acted upon by the goroutine.
