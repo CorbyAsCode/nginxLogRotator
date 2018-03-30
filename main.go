@@ -62,16 +62,23 @@ func findConfigs(root string) []string {
 func findLogs() {
 	configs := findConfigs("/etc/nginx")
 
-	r, err := regexp.Compile(`^\s*(error|access)_log\s+(?P<logFile>.*.log).*$`)
+	//r, err := regexp.Compile(`^\s*(error|access)_log\s+(?P<logFile>.*.log).*$`)
+	r, err := regexp.Compile(`(?P<logEntry>error_log.*)`)
 	check(err)
-	//fmt.Printf("%#v\n", r.FindStringSubmatch("access_log /var/log/nginx/access.log;"))
-	//fmt.Printf("%#v\n", r.SubexpNames())
 
 	for _, config := range configs {
 		contents, err := ioutil.ReadFile(config)
 		check(err)
-		print(string(contents))
-		fmt.Printf("%#v\n", r.FindStringSubmatch(string(contents)))
+		n1 := r.SubexpNames()
+		//md := map[string]string{}
+		r2 := r.FindAllStringSubmatch(string(contents), -1)
+
+		//for i, log := range r2 {
+		//	md[n1[i]] = log
+		//}
+		print(n1)
+		print(r2)
+		//print(md["log"])
 	}
 }
 
